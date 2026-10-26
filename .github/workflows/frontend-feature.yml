@@ -10,7 +10,7 @@ on:
 jobs:
   # Branch name validation
   validate-branch-name:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - name: Validate branch name
         run: |
@@ -40,7 +40,7 @@ jobs:
 
   # Essential tests for feature branches
   essential-tests:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: validate-branch-name
     defaults:
       run:
@@ -73,7 +73,7 @@ jobs:
 
   # Extract branch info and add PR comment
   branch-info:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: [validate-branch-name, essential-tests]
     if: github.event_name == 'pull_request'
     steps:
@@ -119,7 +119,7 @@ jobs:
 
   # Feature branch summary
   feature-summary:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: [validate-branch-name, essential-tests]
     if: always()
     steps:

@@ -16,7 +16,7 @@ on:
 jobs:
   # Quality checks and unit tests
   quality-and-tests:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     defaults:
       run:
         working-directory: frontend
@@ -51,7 +51,7 @@ jobs:
 
   # Integration and component tests
   integration-tests:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: quality-and-tests
     defaults:
       run:
@@ -81,7 +81,7 @@ jobs:
 
   # Build validation
   build-check:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: quality-and-tests
     defaults:
       run:
@@ -113,7 +113,7 @@ jobs:
 
   # Performance tests (only on PRs)
   performance-tests:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: build-check
     if: github.event_name == 'pull_request'
     defaults:
@@ -152,7 +152,7 @@ jobs:
 
   # Summary for develop branch
   develop-summary:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: [quality-and-tests, integration-tests, build-check]
     if: always()
     steps:

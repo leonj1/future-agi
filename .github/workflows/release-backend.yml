@@ -31,7 +31,7 @@ env:
 jobs:
   release:
     name: Build & push backend
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     environment: production
 
     steps:

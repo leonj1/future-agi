@@ -11,7 +11,7 @@ on:
 jobs:
   # Comprehensive testing for main branch
   comprehensive-tests:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     defaults:
       run:
         working-directory: frontend
@@ -46,7 +46,7 @@ jobs:
 
   # Build and security for production
   build-and-security:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: comprehensive-tests
     defaults:
       run:
@@ -82,7 +82,7 @@ jobs:
 
   # Production readiness check
   production-ready:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     needs: [comprehensive-tests, build-and-security]
     steps:
       - name: Production Deployment Ready
